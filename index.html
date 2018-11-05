@@ -16,15 +16,30 @@
           name: 'Gaurangi',
           age: '40'
         }
-        handleClick(e){
+        handleClick = (e) => {
           console.log("Button Clicked!");
+          //console.log(this.state);
+          this.setState({
+            name: "Aniruddha"
+          })
+          console.log(this.state);
         }
-        handleHoverMe(e){
+        handleHoverMe = (e) => {
           console.log(e.target, e.pageX)
         }
-        handleOnCopy(e){
+        handleOnCopy = (e) => {
           console.log("Cant copy!");
         }
+        handleOnSubmit = (e) => {
+          console.log('Form Submitted', this.state.name);
+          e.preventDefault();
+        }
+        handleOnChange = (e) => {
+          this.setState({
+            name: e.target.value
+          });
+        }
+
         render(){
           return(
           <div className="app-content">
@@ -32,7 +47,12 @@
             <p onCopy={ this.handleOnCopy }>Hi! My name is { this.state.name} and I am { this.state.age }</p>
             <button type="button" name="button" onClick={this.handleClick}>Click me</button>
             <button type="button" name="button" onMouseOver={this.handleHoverMe}>Hover Me!</button>
+            <form onSubmit={this.handleOnSubmit}>
+              <input type="text" onChange={this.handleOnChange}/>
+              {/* Input type should be submit not a button ** */}
 
+              <input type="submit" name="submit" value="Submit"/>
+            </form>
           </div>
           )
         }
